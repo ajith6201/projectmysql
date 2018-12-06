@@ -51,6 +51,7 @@ exports.create_task = function(req,res){
 };
 
 exports.update_task = function(req,res){
+    console.log(req);
     Task.UpdateTaskById(req.params.taskId,new Task(req.body),function(err,task){
         if(err)
         res.send(err);

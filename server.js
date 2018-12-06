@@ -2,12 +2,21 @@ const express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 const mysql = require('mysql');
+const cors = require('cors');
 
+app.use(cors());
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 var mc = mysql.createConnection({
     host:'localhost',
     user:'root',
-    password:'root@123',
-    database:'employee_details'
+    password:'',
+    database:'bookmyhall'
 });
 
 mc.connect();
@@ -21,6 +30,3 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 var routes = require('./app/routes/appRouter');
 routes(app);
-
-
-

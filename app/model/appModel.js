@@ -4,13 +4,14 @@ var sql = require('./db.js');
 //create constructor of task
 
 var Task = function(task){
-    this.task = task.task,
-    this.status = task.status,
-    this.Created_at = new Date();
+    this.FirstName = task.FirstName,
+    this.LastName = task.LastName,
+    this.Age = task.Age,
+    this.Sex = task.Sex;
 };
 
     Task.getAllTask = function getAllUser(result){
-        sql.query("SELECT * FROM employee_demo",function(err,res){
+        sql.query("SELECT * FROM sample",function(err,res){
             if(err)
             {
                 console.log('error :',err);
@@ -25,7 +26,7 @@ var Task = function(task){
 
     Task.getTaskById = function getTaskId(taskId,result){
         
-        sql.query("SELECT * FROM employee_demo WHERE id = ?",taskId,function(err,res){
+        sql.query("SELECT * FROM sample WHERE id = ?",taskId,function(err,res){
             if(err)
             {
                 console.log(err);
@@ -39,7 +40,7 @@ var Task = function(task){
     };
 
     Task.CreateTask = function create_user(newTask,result){
-        sql.query("INSERT INTO employee_demo SET ?",newTask,function(err,res){
+        sql.query("INSERT INTO sample SET ?",newTask,function(err,res){
             if(err)
             {
                 console.log(err);
@@ -53,7 +54,7 @@ var Task = function(task){
     };
 
     Task.UpdateTaskById = function(id,task,result){
-        sql.query("UPDATE employee_demo SET task = ?,status = ? WHERE id = ?",[task.task,task.status,id],function(err,res){
+        sql.query("UPDATE sample SET FirstName = ?,LastName = ?,Age = ?,Sex = ? WHERE id = ?",[task.FirstName,task.LastName,task.Age,task.Sex,id],function(err,res){
             if(err)
             {
                 console.log(err);
@@ -67,7 +68,7 @@ var Task = function(task){
     };
 
     Task.DeleteById = function(id,result){
-        sql.query("DELETE FROM employee_demo WHERE id = ?",id,function(err,res){
+        sql.query("DELETE FROM sample WHERE id = ?",id,function(err,res){
             if(err)
             {
                 console.log(err);
